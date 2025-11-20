@@ -28,6 +28,10 @@ The pipeline consists of the following steps:
 
 8.  **Final Filtering**: The annotated VCF is converted to a tab-separated values (TSV) file and filtered using a custom `awk` script to select high-quality, rare, and potentially pathogenic variants.
 
+<p align="center">
+  <img src="workflow.svg" width="900">
+</p>
+
 
 
 ## Dependencies
