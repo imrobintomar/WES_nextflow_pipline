@@ -43,13 +43,14 @@ Scatter execution for variant calling
 Parallel annotation (1000G + ANNOVAR)
 
 **⚙️ 4. Installation & Requirements**
+
 🔧 Software Dependencies
 
 
 | Software           | Version | Purpose                         |
 | ------------------ | ------- | ------------------------------- |
 | **Nextflow**       | ≥ 23.x  | Workflow engine                 |
-| **Java**           | ≥ 11    | Needed for GATK + Nextflow      |
+| **Java**           | ≥ 17    | Needed for GATK + Nextflow      |
 | **fastp**          | Latest  | QC + Trimming                   |
 | **BWA-MEM2**       | Latest  | Alignment                       |
 | **Samtools**       | ≥ 1.13  | BAM processing                  |
@@ -57,11 +58,14 @@ Parallel annotation (1000G + ANNOVAR)
 | **SnpEff/SnpSift** | Latest  | Annotation                      |
 | **ANNOVAR**        | Latest  | Functional annotation           |
 
-📁 Reference Files Required
-hg38 reference FASTA
-Mills & 1000G known sites (for BQSR)
-1000 Genomes chromosome VCFs
-ANNOVAR hg38 humandb
+**📁 Reference Files Required**
+    hg38 reference FASTA
+    
+    Mills & 1000G known sites (for BQSR)
+    
+    1000 Genomes chromosome VCFs
+    
+    ANNOVAR hg38 humandb
 
 ▶️ 5. Usage
 Basic Execution
