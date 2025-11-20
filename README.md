@@ -26,10 +26,11 @@ Stage	Description
 | **ANNOVAR**                        | Multi-database functional + clinical annotation             |
 | **Final Filtering**                | High-quality, rare, impactful variants → TSV                |
 
-🧬2. Workflow Diagram
-<p align="center"> <img src="workflow.svg" width="850"> </p>
+**🧬2. Workflow Diagram**
 
-3. Key Features
+<p align="center"> <img src="workflow.svg" width="550"> </p>
+
+**3. Key Features**
 **✔ End-to-End Automated WES Pipeline**
 
 From FASTQ → TSV with zero manual intervention.
@@ -67,14 +68,19 @@ Parallel annotation (1000G + ANNOVAR)
     
     ANNOVAR hg38 humandb
 
-▶️ 5. Usage
+**▶️ 5. Usage**
 Basic Execution
 
-nextflow run main.nf \
-  --input "/path/to/*.fastq.gz" \
-  --ref "/path/to/hg38.fa" \
-  --knownsites "/path/to/Mills_and_1000G.vcf.gz" \
-  --output results/
+
+     nextflow run main.nf \
+
+        --input "/path/to/*.fastq.gz" \
+  
+        --ref "/path/to/hg38.fa" \
+  
+        --knownsites "/path/to/Mills_and_1000G.vcf.gz" \
+   
+        --output results/
 
 
 
