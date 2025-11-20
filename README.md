@@ -12,8 +12,9 @@ Supports: Local, Docker, Singularity, and SLURM/HPC execution.
 This pipeline automates the complete WES workflow using best-practice bioinformatics tools.
 It ensures clean, reproducible, and efficient variant discovery and annotation.
 
-**🔧 Major Pipeline Stages
-Stage	Description**
+**🔧 Major Pipeline Stages**
+
+Stage	Description
 
 | Stage                              | Description                                                 |
 | ---------------------------------- | ----------------------------------------------------------- |
@@ -25,7 +26,7 @@ Stage	Description**
 | **GATK MergeVcfs**                 | Unified per-sample VCF                                      |
 | **SnpSift (1000G)**                | Population allele frequency annotation                      |
 | **ANNOVAR**                        | Multi-database functional + clinical annotation             |
-| **Final Filtering**                | High-quality, rare, impactful variants → TSV                |
+| **Final Filtering TSV**                | High-quality, rare, impactful variants → TSV                |
 
 **🧬2. Workflow Diagram**
 
