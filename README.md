@@ -6,13 +6,14 @@ A high-performance, modular, and scalable pipeline for Whole Exome Sequencing (W
 From raw FASTQ files to filtered, annotated variants, the pipeline is optimized for speed, reproducibility, and HPC/cloud scalability.
 
 Supports: Local, Docker, Singularity, and SLURM/HPC execution.
-🎯 1. Workflow Overview
+
+**🎯 1. Workflow Overview**
 
 This pipeline automates the complete WES workflow using best-practice bioinformatics tools.
 It ensures clean, reproducible, and efficient variant discovery and annotation.
 
-🔧 Major Pipeline Stages
-Stage	Description
+**🔧 Major Pipeline Stages
+Stage	Description**
 
 | Stage                              | Description                                                 |
 | ---------------------------------- | ----------------------------------------------------------- |
