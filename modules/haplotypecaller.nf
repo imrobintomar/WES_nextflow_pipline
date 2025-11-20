@@ -5,10 +5,10 @@ process HC {
     input:
     tuple val(sample_id), path(bam)
 
+    each chr in (1..22) + ['X']
+
     output:
     tuple val(sample_id), val(chr), path("${sample_id}.${chr}.vcf")
-
-    each chr in (1..22) + ['X']
 
     script:
     """
