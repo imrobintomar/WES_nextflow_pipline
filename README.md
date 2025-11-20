@@ -1,5 +1,5 @@
 WES Exome Sequencing Analysis Pipeline (Nextflow DSL2)
-<p align="center"> <img src="workflow.svg" width="850"> </p> <p align="center"> <img src="https://img.shields.io/badge/Nextflow-v23.04.0-brightgreen"> <img src="https://img.shields.io/badge/Workflow_Status-Automated-success"> <img src="https://img.shields.io/badge/License-MIT-blue"> </p>
+ <p align="center"> <img src="https://img.shields.io/badge/Nextflow-v23.04.0-brightgreen"> <img src="https://img.shields.io/badge/Workflow_Status-Automated-success"> <img src="https://img.shields.io/badge/License-MIT-blue"> </p>
 
 A high-performance, modular, and scalable pipeline for Whole Exome Sequencing (WES) analysis built with Nextflow DSL2.
 From raw FASTQ files to filtered, annotated variants, the pipeline is optimized for speed, reproducibility, and HPC/cloud scalability.
