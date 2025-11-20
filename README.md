@@ -1,4 +1,5 @@
-WES Exome Sequencing Analysis Pipeline (Nextflow DSL2)
+**WES Exome Sequencing Analysis Pipeline (Nextflow DSL2)**
+
  <p align="center"> <img src="https://img.shields.io/badge/Nextflow-v23.04.0-brightgreen"> <img src="https://img.shields.io/badge/Workflow_Status-Automated-success"> <img src="https://img.shields.io/badge/License-MIT-blue"> </p>
 
 A high-performance, modular, and scalable pipeline for Whole Exome Sequencing (WES) analysis built with Nextflow DSL2.
@@ -25,7 +26,7 @@ Stage	Description
 | **ANNOVAR**                        | Multi-database functional + clinical annotation             |
 | **Final Filtering**                | High-quality, rare, impactful variants → TSV                |
 
-🧬 2. Workflow Diagram
+🧬2. Workflow Diagram
 <p align="center"> <img src="workflow.svg" width="850"> </p>
 
 3. Key Features
@@ -71,18 +72,16 @@ ANNOVAR hg38 humandb
 
 ▶️ 5. Usage
 Basic Execution
+
 nextflow run main.nf \
   --input "/path/to/*.fastq.gz" \
   --ref "/path/to/hg38.fa" \
   --knownsites "/path/to/Mills_and_1000G.vcf.gz" \
   --output results/
 
-<<<<<<< HEAD
-This repository contains a Nextflow pipeline for Whole Exome Sequencing (WES) data analysis. The pipeline starts from raw FASTQ files and produces an annotated and filtered list of variants.
 
-![Nextflow](https://img.shields.io/badge/Nextflow-v23.04.0-brightgreen)
-![Workflow Status](https://github.com/imrobintomar/WES_nextflow_pipline/actions/workflows/ci.yml/badge.svg)
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+
+
 
 ## Workflow
 
@@ -93,22 +92,24 @@ The pipeline consists of the following steps:
 2.  **Alignment (BWA-MEM2)**: The cleaned reads are aligned to a reference genome using `bwa-mem2`.
 
 3.  **Sorting and Duplicate Marking (GATK)**: The aligned SAM file is converted to BAM, sorted by coordinate, and duplicate reads are marked using `gatk SortSam` and `gatk MarkDuplicates`.
+   
 
 4.  **Base Quality Score Recalibration (GATK)**: Base quality scores are recalibrated using `gatk BaseRecalibrator` and `gatk ApplyBQSR` to correct for systematic errors.
 
+
 5.  **Variant Calling (GATK HaplotypeCaller)**: Variants are called for each sample on a per-chromosome basis using `gatk HaplotypeCaller`.
 
+
 6.  **Merge VCFs (GATK)**: The per-chromosome VCF files are merged into a single VCF file for each sample using `gatk MergeVcfs`.
+
 
 7.  **Annotation (SnpSift & ANNOVAR)**:
     *   Variants are first annotated with allele frequencies from the 1000 Genomes Project using `SnpSift`.
     *   Further annotation is performed using `ANNOVAR` with multiple databases, including refGene, dbNSFP, ClinVar, gnomAD, and COSMIC.
 
+
 8.  **Final Filtering**: The annotated VCF is converted to a tab-separated values (TSV) file and filtered using a custom `awk` script to select high-quality, rare, and potentially pathogenic variants.
 
-<p align ="center">
-  <img src="workflow.svg" width="500">
-</p>
 
 
 
@@ -138,10 +139,10 @@ You can also adjust the `process` selectors to configure CPU, memory, and time r
 
 To run the pipeline, use the following command:
 
+
 ```bash
 nextflow run main.nf -profile standard
 ```
 
 Make sure you have configured the paths in `nextflow.config` before running the pipeline. The final filtered variant list will be available in the output directory specified by `params.output`.
-=======
->>>>>>> f0e225cb5d966095d23e86d20660b95c2b0523b4
+
