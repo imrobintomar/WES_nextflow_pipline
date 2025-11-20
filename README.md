@@ -30,29 +30,22 @@ Stage	Description
 <p align="center"> <img src="workflow.svg" width="850"> </p>
 
 3. Key Features
-✔ End-to-End Automated WES Pipeline
+**✔ End-to-End Automated WES Pipeline**
+
 From FASTQ → TSV with zero manual intervention.
-✔ Nextflow DSL2 Modular Architecture
+
+**✔ Nextflow DSL2 Modular Architecture**
 Each step is a standalone module (modules/*.nf), easy to edit or extend.
-✔ Massive Performance Improvements
+
+**✔ Massive Performance Improvements**
 Multi-sample parallelism
 Scatter execution for variant calling
 Parallel annotation (1000G + ANNOVAR)
-See benchmark section below.
-✔ Container Support
-Dockerfile included
-Singularity definition included
-✔ HPC/SLURM Support
-Preconfigured profile in nextflow.config
-Automatic container binding
-✔ Reproducible & Resume-capable
--resume supported
-Deterministic outputs
-✔ Continuous Integration
-GitHub Actions CI pipeline
-Validates syntax + workflow integrity
-⚙️ 4. Installation & Requirements
+
+**⚙️ 4. Installation & Requirements**
 🔧 Software Dependencies
+
+
 | Software           | Version | Purpose                         |
 | ------------------ | ------- | ------------------------------- |
 | **Nextflow**       | ≥ 23.x  | Workflow engine                 |
