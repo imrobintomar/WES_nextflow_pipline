@@ -7,45 +7,45 @@
   </style>
   <defs>
     <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
-      <polygon points="0 0, 10 3.5, 0 7" fill="#1f2937"/>
+      <polygon points="0 0, 10 3.5, 0 7" fill="#1f2937"></polygon>
     </marker>
   </defs>
 
-  <rect x="40" y="40" width="220" height="70" class="box"/>
+  <rect x="40" y="40" width="220" height="70" class="box"></rect>
   <text x="150" y="82" text-anchor="middle" class="title">FASTQ Input</text>
 
-  <rect x="40" y="140" width="220" height="70" class="box"/>
+  <rect x="40" y="140" width="220" height="70" class="box"></rect>
   <text x="150" y="182" text-anchor="middle" class="title">fastp</text>
 
-  <rect x="40" y="240" width="220" height="70" class="box"/>
+  <rect x="40" y="240" width="220" height="70" class="box"></rect>
   <text x="150" y="282" text-anchor="middle" class="title">BWA-MEM2</text>
 
-  <rect x="420" y="40" width="320" height="70" class="box"/>
-  <text x="580" y="82" text-anchor="middle" class="title">Sort & MarkDup</text>
+  <rect x="420" y="40" width="320" height="70" class="box"></rect>
+  <text x="580" y="82" text-anchor="middle" class="title">Sort &amp; MarkDup</text>
 
-  <rect x="420" y="140" width="320" height="70" class="box"/>
+  <rect x="420" y="140" width="320" height="70" class="box"></rect>
   <text x="580" y="182" text-anchor="middle" class="title">BQSR</text>
 
-  <rect x="420" y="240" width="320" height="70" class="box"/>
+  <rect x="420" y="240" width="320" height="70" class="box"></rect>
   <text x="580" y="282" text-anchor="middle" class="title">HaplotypeCaller (scatter)</text>
 
-  <rect x="820" y="140" width="300" height="70" class="box"/>
+  <rect x="820" y="140" width="300" height="70" class="box"></rect>
   <text x="970" y="182" text-anchor="middle" class="title">Merge VCF</text>
 
-  <rect x="820" y="240" width="300" height="70" class="box"/>
+  <rect x="820" y="240" width="300" height="70" class="box"></rect>
   <text x="970" y="282" text-anchor="middle" class="title">SnpSift 1000G</text>
 
-  <rect x="820" y="340" width="300" height="70" class="box"/>
+  <rect x="820" y="340" width="300" height="70" class="box"></rect>
   <text x="970" y="382" text-anchor="middle" class="title">ANNOVAR</text>
 
-  <rect x="820" y="440" width="300" height="70" class="box"/>
+  <rect x="820" y="440" width="300" height="70" class="box"></rect>
   <text x="970" y="482" text-anchor="middle" class="title">Final Filtering</text>
 
-  <line x1="260" y1="75" x2="420" y2="75" class="arrow"/>
-  <line x1="260" y1="175" x2="420" y2="175" class="arrow"/>
-  <line x1="260" y1="275" x2="420" y2="275" class="arrow"/>
-  <line x1="740" y1="185" x2="820" y2="185" class="arrow"/>
-  <line x1="740" y1="275" x2="820" y2="275" class="arrow"/>
-  <line x1="740" y1="375" x2="820" y2="375" class="arrow"/>
-  <line x1="740" y1="475" x2="820" y2="475" class="arrow"/>
+  <line x1="260" y1="75" x2="420" y2="75" class="arrow"></line>
+  <line x1="260" y1="175" x2="420" y2="175" class="arrow"></line>
+  <line x1="260" y1="275" x2="420" y2="275" class="arrow"></line>
+  <line x1="740" y1="185" x2="820" y2="185" class="arrow"></line>
+  <line x1="740" y1="275" x2="820" y2="275" class="arrow"></line>
+  <line x1="740" y1="375" x2="820" y2="375" class="arrow"></line>
+  <line x1="740" y1="475" x2="820" y2="475" class="arrow"></line>
 </svg>
