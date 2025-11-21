@@ -1,0 +1,61 @@
+# Docker Compose configuration for WES Pipeline Web Portal
+version: '3.8'
+
+services:
+  web-portal:
+    build:
+      context: ./web_portal
+      dockerfile: Dockerfile
+    container_name: wes-web-portal
+    ports:
+      - "5000:5000"
+    volumes:
+      # Mount pipeline code
+      - ./:/app/pipeline:ro
+      # Persist uploads, results, and logs
+      - wes_uploads:/app/uploads
+      - wes_results:/app/results
+      - wes_logs:/app/logs
+      # Mount reference data (customize paths)
+      - ${REF_DATA_PATH:-/data/reference}:/data/reference:ro
+      # Mount for Nextflow work directory
+      - wes_work:/app/work
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-change-this-in-production}
+      - FLASK_ENV=${FLASK_ENV:-production}
+      # Reference paths (customize for your setup)
+      - REF_GENOME=/data/reference/hg38.fa
+      - KNOWN_SITES=/data/reference/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+  # Optional: Nginx reverse proxy for production
+  nginx:
+    image: nginx:alpine
+    container_name: wes-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - web-portal
+    restart: unless-stopped
+    profiles:
+      - production
+
+volumes:
+  wes_uploads:
+    name: wes_uploads
+  wes_results:
+    name: wes_results
+  wes_logs:
+    name: wes_logs
+  wes_work:
+    name: wes_work

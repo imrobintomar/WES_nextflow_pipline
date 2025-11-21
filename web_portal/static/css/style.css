@@ -1,0 +1,245 @@
+/* WES Pipeline Web Portal Styles */
+
+:root {
+    --primary-color: #0d6efd;
+    --success-color: #198754;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* Upload Area */
+.upload-area {
+    border: 3px dashed #dee2e6;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: #f8f9fa;
+}
+
+.upload-area:hover,
+.upload-area.drag-over {
+    border-color: var(--primary-color);
+    background: #e7f1ff;
+}
+
+.upload-area .upload-icon {
+    margin-bottom: 15px;
+}
+
+/* Feature Boxes */
+.feature-box {
+    padding: 20px;
+    border-radius: 8px;
+    transition: transform 0.2s;
+}
+
+.feature-box:hover {
+    transform: translateY(-5px);
+}
+
+/* Pipeline Steps Visualization */
+.pipeline-steps {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 20px 0;
+}
+
+.pipeline-steps .step {
+    text-align: center;
+    padding: 10px 15px;
+    background: #e9ecef;
+    border-radius: 8px;
+    min-width: 100px;
+}
+
+.pipeline-steps .step .step-number {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.pipeline-steps .step .step-name {
+    display: block;
+    font-weight: 600;
+    color: #333;
+}
+
+.pipeline-steps .step small {
+    color: #6c757d;
+    font-size: 11px;
+}
+
+.pipeline-steps .step-arrow {
+    color: #adb5bd;
+    font-size: 20px;
+}
+
+/* Pipeline Progress Stages */
+.pipeline-progress {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 15px 0;
+}
+
+.pipeline-progress .stage {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    background: #e9ecef;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #6c757d;
+}
+
+.pipeline-progress .stage.active {
+    background: #cfe2ff;
+    color: var(--primary-color);
+}
+
+.pipeline-progress .stage.active i {
+    animation: pulse 1s infinite;
+}
+
+.pipeline-progress .stage.completed {
+    background: #d1e7dd;
+    color: var(--success-color);
+}
+
+.pipeline-progress .stage.completed i::before {
+    content: "\F26B"; /* check-circle-fill */
+}
+
+/* Log Viewer */
+.log-viewer {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 20px;
+    margin: 0;
+    max-height: 500px;
+    overflow-y: auto;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 13px;
+    line-height: 1.5;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Progress Bar */
+.progress {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    transition: width 0.5s ease;
+}
+
+/* Spinning Animation */
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Cards */
+.card {
+    border-radius: 10px;
+    border: none;
+}
+
+.card-header {
+    border-radius: 10px 10px 0 0 !important;
+}
+
+/* Table Improvements */
+.table-responsive {
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Badges */
+.badge {
+    padding: 6px 12px;
+    font-weight: 500;
+}
+
+/* Buttons */
+.btn {
+    border-radius: 6px;
+}
+
+.btn-lg {
+    padding: 12px 30px;
+}
+
+/* Navbar */
+.navbar-brand {
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+/* Footer */
+.footer {
+    border-top: 1px solid #dee2e6;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .pipeline-steps {
+        flex-direction: column;
+    }
+
+    .pipeline-steps .step-arrow {
+        transform: rotate(90deg);
+    }
+
+    .upload-area {
+        padding: 20px;
+    }
+}
+
+/* Job Status Colors */
+.status-completed { color: var(--success-color); }
+.status-failed { color: var(--danger-color); }
+.status-running { color: var(--primary-color); }
+.status-queued { color: var(--warning-color); }
+
+/* File List */
+.list-group-item {
+    border-left: 3px solid var(--primary-color);
+}
+
+/* Animation for new items */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease;
+}

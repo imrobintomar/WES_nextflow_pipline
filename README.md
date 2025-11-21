@@ -151,3 +151,111 @@ nextflow run main.nf -profile standard
 
 Make sure you have configured the paths in `nextflow.config` before running the pipeline. The final filtered variant list will be available in the output directory specified by `params.output`.
 
+---
+
+## Web Portal
+
+The WES Pipeline includes a user-friendly web portal for uploading exome sequencing files and running analyses through a browser interface.
+
+### Web Portal Features
+
+- **File Upload**: Drag-and-drop interface for uploading FASTQ files
+- **Job Management**: Track, monitor, and manage multiple analysis jobs
+- **Real-time Progress**: Live progress updates during pipeline execution
+- **Results Download**: Download individual files or all results as ZIP
+- **Log Viewer**: View pipeline logs in real-time
+
+### Quick Start (Web Portal)
+
+#### Option 1: Using Docker Compose (Recommended)
+
+```bash
+# Clone the repository
+git clone https://github.com/imrobintomar/WES_nextflow_pipline.git
+cd WES_nextflow_pipline
+
+# Set environment variables (customize paths)
+export REF_DATA_PATH=/path/to/reference/data
+export SECRET_KEY=your-secure-secret-key
+
+# Start the web portal
+docker-compose up -d
+
+# Access at http://localhost:5000
+```
+
+#### Option 2: Running Locally
+
+```bash
+# Navigate to web portal directory
+cd web_portal
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run development server
+python app.py
+
+# Or run with Gunicorn (production)
+gunicorn --bind 0.0.0.0:5000 --workers 4 --timeout 300 app:app
+```
+
+### Web Portal Architecture
+
+```
+web_portal/
+├── app.py                 # Flask application
+├── requirements.txt       # Python dependencies
+├── Dockerfile            # Container configuration
+├── gunicorn.conf.py      # Production server config
+├── templates/            # HTML templates
+│   ├── base.html         # Base template
+│   ├── index.html        # Upload page
+│   ├── configure.html    # Job configuration
+│   ├── job_status.html   # Progress & results
+│   ├── jobs.html         # Job list
+│   ├── logs.html         # Log viewer
+│   └── about.html        # Pipeline info
+├── static/
+│   ├── css/style.css     # Styles
+│   └── js/main.js        # JavaScript
+├── uploads/              # Uploaded files
+├── results/              # Analysis results
+└── logs/                 # Pipeline logs
+```
+
+### Web Portal API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/` | GET | Home page with upload form |
+| `/upload` | POST | Upload FASTQ files |
+| `/job/<id>/configure` | GET | Configure job parameters |
+| `/job/<id>/start` | POST | Start pipeline execution |
+| `/job/<id>` | GET | View job status and results |
+| `/api/job/<id>/status` | GET | JSON API for job status |
+| `/job/<id>/logs` | GET | View pipeline logs |
+| `/job/<id>/download/<file>` | GET | Download result file |
+| `/job/<id>/download-all` | GET | Download all results (ZIP) |
+| `/jobs` | GET | List all jobs |
+| `/health` | GET | Health check endpoint |
+
+### Environment Variables
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `SECRET_KEY` | (random) | Flask session secret key |
+| `FLASK_ENV` | production | Flask environment |
+| `REF_DATA_PATH` | /data/reference | Path to reference data |
+
+### Production Deployment
+
+For production deployment, we recommend:
+
+1. **Use HTTPS**: Configure Nginx as a reverse proxy with SSL
+2. **Set a strong SECRET_KEY**: Generate a secure random key
+3. **Use persistent storage**: Mount volumes for uploads, results, and logs
+4. **Configure resource limits**: Adjust Docker/Gunicorn workers based on server capacity
+
+Example Nginx configuration is provided in the repository for production deployments.
+

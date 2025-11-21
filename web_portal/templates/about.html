@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block title %}About{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <h2><i class="bi bi-info-circle"></i> About WES Pipeline</h2>
+
+        <div class="card shadow mt-4">
+            <div class="card-body">
+                <h4>Whole Exome Sequencing Analysis Pipeline</h4>
+                <p>
+                    This web portal provides an easy-to-use interface for analyzing whole exome sequencing (WES) data.
+                    The underlying pipeline is built with Nextflow DSL2, ensuring reproducibility, scalability, and portability.
+                </p>
+
+                <h5 class="mt-4"><i class="bi bi-diagram-3"></i> Pipeline Workflow</h5>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-primary">
+                            <tr>
+                                <th>Stage</th>
+                                <th>Tool</th>
+                                <th>Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1. Quality Control</td>
+                                <td><strong>fastp</strong></td>
+                                <td>Adapter trimming, quality filtering, and QC reporting</td>
+                            </tr>
+                            <tr>
+                                <td>2. Alignment</td>
+                                <td><strong>BWA-MEM2</strong></td>
+                                <td>Fast and accurate read alignment to hg38 reference genome</td>
+                            </tr>
+                            <tr>
+                                <td>3. Preprocessing</td>
+                                <td><strong>GATK</strong></td>
+                                <td>Sorting, duplicate marking, and base quality score recalibration (BQSR)</td>
+                            </tr>
+                            <tr>
+                                <td>4. Variant Calling</td>
+                                <td><strong>GATK HaplotypeCaller</strong></td>
+                                <td>Per-chromosome variant calling for SNPs and indels</td>
+                            </tr>
+                            <tr>
+                                <td>5. VCF Merging</td>
+                                <td><strong>GATK MergeVcfs</strong></td>
+                                <td>Consolidate per-chromosome VCFs into a single file</td>
+                            </tr>
+                            <tr>
+                                <td>6. Population Annotation</td>
+                                <td><strong>SnpSift</strong></td>
+                                <td>Add 1000 Genomes allele frequencies</td>
+                            </tr>
+                            <tr>
+                                <td>7. Functional Annotation</td>
+                                <td><strong>ANNOVAR</strong></td>
+                                <td>Comprehensive annotation with refGene, ClinVar, gnomAD, COSMIC, etc.</td>
+                            </tr>
+                            <tr>
+                                <td>8. Final Filtering</td>
+                                <td><strong>Custom</strong></td>
+                                <td>Extract high-quality, rare, impactful variants to TSV</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <h5 class="mt-4"><i class="bi bi-file-earmark-text"></i> Input Requirements</h5>
+                <ul>
+                    <li>Paired-end FASTQ files (compressed: .fastq.gz or .fq.gz)</li>
+                    <li>Naming convention: <code>sample_1.fastq.gz</code>, <code>sample_2.fastq.gz</code></li>
+                    <li>Human exome sequencing data (hg38 reference)</li>
+                </ul>
+
+                <h5 class="mt-4"><i class="bi bi-folder"></i> Output Files</h5>
+                <ul>
+                    <li><strong>.filtered.tsv</strong> - Final filtered variants (main result)</li>
+                    <li><strong>.annovar.vcf</strong> - Fully annotated VCF file</li>
+                    <li><strong>.merged.vcf</strong> - Merged variant calls</li>
+                    <li><strong>report.html</strong> - Nextflow execution report</li>
+                    <li><strong>timeline.html</strong> - Pipeline timeline visualization</li>
+                </ul>
+
+                <h5 class="mt-4"><i class="bi bi-gear"></i> Technologies</h5>
+                <div class="row text-center mt-3">
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="p-3 border rounded">
+                            <strong>Nextflow</strong>
+                            <br><small class="text-muted">Workflow Engine</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="p-3 border rounded">
+                            <strong>GATK 4.x</strong>
+                            <br><small class="text-muted">Variant Analysis</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="p-3 border rounded">
+                            <strong>BWA-MEM2</strong>
+                            <br><small class="text-muted">Alignment</small>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-6 mb-3">
+                        <div class="p-3 border rounded">
+                            <strong>ANNOVAR</strong>
+                            <br><small class="text-muted">Annotation</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow mt-4">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-github"></i> Source Code</h5>
+            </div>
+            <div class="card-body">
+                <p>This pipeline is open source and available on GitHub:</p>
+                <a href="https://github.com/imrobintomar/WES_nextflow_pipline" target="_blank" class="btn btn-dark">
+                    <i class="bi bi-github"></i> View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
