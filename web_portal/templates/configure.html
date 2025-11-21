@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Configure Analysis{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{ url_for('index') }}">Home</a></li>
+                <li class="breadcrumb-item active">Configure Job {{ job.id }}</li>
+            </ol>
+        </nav>
+
+        <div class="card shadow">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0"><i class="bi bi-gear"></i> Configure Analysis Parameters</h4>
+            </div>
+            <div class="card-body">
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Job ID:</strong> {{ job.id }} |
+                    <strong>Files:</strong> {{ job.files|length }} uploaded
+                </div>
+
+                <h6><i class="bi bi-files"></i> Uploaded Files:</h6>
+                <ul class="list-group mb-4">
+                    {% for file in job.files %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-file-earmark-text"></i> {{ file.name }}</span>
+                        <span class="badge bg-secondary">{{ (file.size / 1024 / 1024)|round(2) }} MB</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <form action="{{ url_for('start_job', job_id=job.id) }}" method="post" id="configForm">
+                    <h6><i class="bi bi-sliders"></i> Pipeline Configuration:</h6>
+
+                    <div class="mb-3">
+                        <label class="form-label">Reference Genome (hg38)</label>
+                        <input type="text" name="ref_genome" class="form-control"
+                               placeholder="/path/to/hg38.fa"
+                               value="{{ job.config.get('ref', '') }}">
+                        <div class="form-text">Path to indexed hg38 reference genome FASTA file</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Known Sites VCF (for BQSR)</label>
+                        <input type="text" name="knownsites" class="form-control"
+                               placeholder="/path/to/Mills_and_1000G_gold_standard.indels.hg38.vcf.gz"
+                               value="{{ job.config.get('knownsites', '') }}">
+                        <div class="form-text">Path to known sites VCF for base quality score recalibration</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="stub_run" id="stubRun">
+                            <label class="form-check-label" for="stubRun">
+                                <strong>Test Mode (Stub Run)</strong>
+                            </label>
+                            <div class="form-text">Run pipeline in test mode without actual processing (for validation)</div>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-success btn-lg" id="startBtn">
+                            <i class="bi bi-play-fill"></i> Start Analysis
+                        </button>
+                        <a href="{{ url_for('index') }}" class="btn btn-outline-secondary">
+                            <i class="bi bi-x"></i> Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mt-4 shadow-sm">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-clock-history"></i> Estimated Processing Time</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <thead>
+                        <tr>
+                            <th>Data Size</th>
+                            <th>Estimated Time</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>< 5 GB</td>
+                            <td>2-4 hours</td>
+                            <td>Single sample</td>
+                        </tr>
+                        <tr>
+                            <td>5-20 GB</td>
+                            <td>4-12 hours</td>
+                            <td>Multiple samples</td>
+                        </tr>
+                        <tr>
+                            <td>> 20 GB</td>
+                            <td>12-48 hours</td>
+                            <td>Large cohort</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <small class="text-muted">Times vary based on server load and data complexity.</small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('configForm').addEventListener('submit', function() {
+    const btn = document.getElementById('startBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Starting...';
+});
+</script>
+{% endblock %}
